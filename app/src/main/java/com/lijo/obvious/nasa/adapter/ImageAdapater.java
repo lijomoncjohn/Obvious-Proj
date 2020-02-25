@@ -42,7 +42,11 @@ public class ImageAdapater extends RecyclerView.Adapter<ImageAdapater.MyviewHold
 
     @Override
     public void onBindViewHolder(@NonNull ImageAdapater.MyviewHolder holder, final int position) {
-        Glide.with(context).load(dataList.get(position).getUrl()).placeholder(R.drawable.no_image).into(holder.image);
+        Glide.with(holder.image.getContext())
+                .load(dataList.get(position).getUrl())
+                .centerCrop()
+                .override(300, 300)
+                .placeholder(R.drawable.no_image).into(holder.image);
         holder.title.setText(dataList.get(position).getTitle());
     }
 

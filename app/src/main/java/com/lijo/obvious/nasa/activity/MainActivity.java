@@ -28,9 +28,10 @@ public class MainActivity extends AppCompatActivity implements NavigationHost, N
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            navigateTo(new GalleryFragment(), true);
-        }
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.container_main, new GalleryFragment())
+                .commit();
 
         initView();
     }
