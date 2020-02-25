@@ -20,13 +20,13 @@ import com.lijo.obvious.nasa.model.ImageResponse;
 
 import java.util.List;
 
-public class ImageAdapater extends RecyclerView.Adapter<ImageAdapater.MyviewHolder> {
+public class DetailsAdapater extends RecyclerView.Adapter<DetailsAdapater.MyviewHolder> {
     Context context;
     List<ImageResponse> dataList;
 
     private static final String IMAGE_URL = "https://api.pubburps.com/v1/api/home/fetch/events/";
 
-    public ImageAdapater(Context context, List<ImageResponse> dataList) {
+    public DetailsAdapater(Context context, List<ImageResponse> dataList) {
         this.context = context;
         this.dataList = dataList;
     }
@@ -38,20 +38,21 @@ public class ImageAdapater extends RecyclerView.Adapter<ImageAdapater.MyviewHold
 
     @NonNull
     @Override
-    public ImageAdapater.MyviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_gallery,parent,false);
+    public DetailsAdapater.MyviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.list_details,parent,false);
         return new MyviewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImageAdapater.MyviewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull DetailsAdapater.MyviewHolder holder, final int position) {
         Glide.with(holder.image.getContext())
                 .load(dataList.get(position).getUrl())
                 .centerCrop()
                 .override(300, 300)
-                .placeholder(R.drawable.lottie_loading_image)
-                .into(holder.image);
+                .placeholder(R.drawable.lottie_loading_image).into(holder.image);
         holder.title.setText(dataList.get(position).getTitle());
+        holder.explanation.setText(dataList.get(position).getExplanation());
+        holder.date.setText(dataList.get(position).getDate());
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,12 +78,14 @@ public class ImageAdapater extends RecyclerView.Adapter<ImageAdapater.MyviewHold
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
        ImageView image;
-       TextView title;
+       TextView title, explanation, date;
 
         public MyviewHolder(View itemView) {
             super(itemView);
-            image = (itemView).findViewById(R.id.iv_pic);
-            title = (itemView).findViewById(R.id.tv_title);
+            image = (itemView).findViewById(R.id.img_pic_details);
+            title = (itemView).findViewById(R.id.tv_detail_title);
+            date = (itemView).findViewById(R.id.tv_detail_date);
+            explanation = (itemView).findViewById(R.id.tv_detail_explanation);
         }
     }
 
