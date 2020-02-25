@@ -3,6 +3,7 @@ package com.lijo.obvious.nasa.fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,8 @@ public class DetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_details, container, false);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Image details");
 
         if (getArguments() != null) {
             position = Integer.parseInt(getArguments().getString("position"));

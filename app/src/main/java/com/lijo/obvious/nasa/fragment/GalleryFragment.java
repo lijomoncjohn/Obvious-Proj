@@ -3,6 +3,7 @@ package com.lijo.obvious.nasa.fragment;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +40,8 @@ public class GalleryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_gallery, container, false);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Gallery");
 
         rv_images = v.findViewById(R.id.rv_pic_gallery);
         imageResponses = new ArrayList<>();

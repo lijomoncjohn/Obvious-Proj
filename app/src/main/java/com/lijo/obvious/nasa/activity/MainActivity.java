@@ -9,6 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.net.wifi.hotspot2.pps.HomeSp;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -73,7 +75,10 @@ public class MainActivity extends AppCompatActivity implements NavigationHost, N
                 navigateTo(new GalleryFragment(), false);
                 break;
             case R.id.nav_github:
-                navigateTo(new DetailsFragment(), false);
+                Intent github = new Intent(Intent.ACTION_VIEW);
+                github.setData(Uri.parse("https://github.com/lijomoncjohn/Obvious-Proj"));
+                startActivity(github);
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
