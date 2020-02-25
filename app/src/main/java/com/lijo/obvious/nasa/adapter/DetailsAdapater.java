@@ -25,16 +25,9 @@ public class DetailsAdapater extends RecyclerView.Adapter<DetailsViewHolder> {
     Context context;
     List<ImageResponse> dataList;
 
-    private static final String IMAGE_URL = "https://api.pubburps.com/v1/api/home/fetch/events/";
-
     public DetailsAdapater(Context context, List<ImageResponse> dataList) {
         this.context = context;
         this.dataList = dataList;
-    }
-
-    public void setDataList(List<ImageResponse> exclusives) {
-        this.dataList = exclusives;
-        notifyDataSetChanged();
     }
 
     @NonNull
