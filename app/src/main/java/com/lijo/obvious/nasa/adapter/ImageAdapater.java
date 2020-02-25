@@ -17,10 +17,11 @@ import com.bumptech.glide.Glide;
 import com.lijo.obvious.nasa.R;
 import com.lijo.obvious.nasa.fragment.DetailsFragment;
 import com.lijo.obvious.nasa.model.ImageResponse;
+import com.lijo.obvious.nasa.viewholder.GalleryViewHolder;
 
 import java.util.List;
 
-public class ImageAdapater extends RecyclerView.Adapter<ImageAdapater.MyviewHolder> {
+public class ImageAdapater extends RecyclerView.Adapter<GalleryViewHolder> {
     Context context;
     List<ImageResponse> dataList;
 
@@ -38,13 +39,13 @@ public class ImageAdapater extends RecyclerView.Adapter<ImageAdapater.MyviewHold
 
     @NonNull
     @Override
-    public ImageAdapater.MyviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GalleryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_gallery,parent,false);
-        return new MyviewHolder(view);
+        return new GalleryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImageAdapater.MyviewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull GalleryViewHolder holder, final int position) {
         Glide.with(holder.image.getContext())
                 .load(dataList.get(position).getUrl())
                 .centerCrop()
@@ -73,17 +74,6 @@ public class ImageAdapater extends RecyclerView.Adapter<ImageAdapater.MyviewHold
     @Override
     public int getItemCount() {
         return dataList.size();
-    }
-
-    public class MyviewHolder extends RecyclerView.ViewHolder {
-       ImageView image;
-       TextView title;
-
-        public MyviewHolder(View itemView) {
-            super(itemView);
-            image = (itemView).findViewById(R.id.iv_pic);
-            title = (itemView).findViewById(R.id.tv_title);
-        }
     }
 
 }

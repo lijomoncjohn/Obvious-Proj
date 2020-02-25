@@ -17,10 +17,11 @@ import com.bumptech.glide.Glide;
 import com.lijo.obvious.nasa.R;
 import com.lijo.obvious.nasa.fragment.DetailsFragment;
 import com.lijo.obvious.nasa.model.ImageResponse;
+import com.lijo.obvious.nasa.viewholder.DetailsViewHolder;
 
 import java.util.List;
 
-public class DetailsAdapater extends RecyclerView.Adapter<DetailsAdapater.MyviewHolder> {
+public class DetailsAdapater extends RecyclerView.Adapter<DetailsViewHolder> {
     Context context;
     List<ImageResponse> dataList;
 
@@ -38,13 +39,13 @@ public class DetailsAdapater extends RecyclerView.Adapter<DetailsAdapater.Myview
 
     @NonNull
     @Override
-    public DetailsAdapater.MyviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public DetailsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.list_details,parent,false);
-        return new MyviewHolder(view);
+        return new DetailsViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DetailsAdapater.MyviewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull DetailsViewHolder holder, final int position) {
         Glide.with(holder.image.getContext())
                 .load(dataList.get(position).getUrl())
                 .centerCrop()
@@ -53,6 +54,7 @@ public class DetailsAdapater extends RecyclerView.Adapter<DetailsAdapater.Myview
         holder.title.setText(dataList.get(position).getTitle());
         holder.explanation.setText(dataList.get(position).getExplanation());
         holder.date.setText(dataList.get(position).getDate());
+        holder.copyright.setText(dataList.get(position).getCopyright());
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,19 +76,6 @@ public class DetailsAdapater extends RecyclerView.Adapter<DetailsAdapater.Myview
     @Override
     public int getItemCount() {
         return dataList.size();
-    }
-
-    public class MyviewHolder extends RecyclerView.ViewHolder {
-       ImageView image;
-       TextView title, explanation, date;
-
-        public MyviewHolder(View itemView) {
-            super(itemView);
-            image = (itemView).findViewById(R.id.img_pic_details);
-            title = (itemView).findViewById(R.id.tv_detail_title);
-            date = (itemView).findViewById(R.id.tv_detail_date);
-            explanation = (itemView).findViewById(R.id.tv_detail_explanation);
-        }
     }
 
 }
